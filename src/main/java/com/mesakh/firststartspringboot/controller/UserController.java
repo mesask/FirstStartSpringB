@@ -5,10 +5,7 @@ import com.mesakh.firststartspringboot.models.request.UserRequest;
 import org.springframework.stereotype.Controller;
 import com.mesakh.firststartspringboot.service.UserService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 //import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +21,7 @@ public class UserController {
 
     @GetMapping("/users")
     public String index(Model model){
-        List<User> listUse = userService.getAllUserActive();
+        List<User> listUse = userService.getAllUsers();
         model.addAttribute("users", listUse);
         return "admin/user/index";
     }
@@ -41,5 +38,34 @@ public class UserController {
         userService.insertAndUpdate(userRequest);
         return "redirect:/admin/users";
     }
+
+    @GetMapping("/users/edit/{id}")
+    public String edit(@PathVariable("id") Integer Id, Model model){
+        UserRequest userRequest = new UserRequest();
+        var user = userService.getUserById(Id);
+        userRequest.setId(user.getId());
+        userRequest.setUsername(user.getUsername());
+        userRequest.setEmail(user.getEmail());
+        userRequest.setPassword(user.getPassword());
+        userRequest.setPhoneNumber(user.getPhoneNumber());
+        model.addAttribute("user", userRequest);
+        return "admin/user/form";
+    }
+
+    @GetMapping("/users/delete/{id}")
+    public String delete(@PathVariable("id") Integer Id){
+        userService.deleteUser(Id);
+        return "redirect:/admin/users";
+//        UserRequest userRequest = new UserRequest();
+//        var user = userService.getUserById(id);
+//        userRequest.setId(user.getId());
+//        userRequest.setUsername(user.getUsername());
+//        userRequest.setEmail(user.getEmail());
+//        userRequest.setPassword(user.getPassword());
+//        userRequest.setPhoneNumber(user.getPhoneNumber());
+//        model.addAttribute("user", userRequest);
+//        return "admin/user/form";
+    }
+
 
 }

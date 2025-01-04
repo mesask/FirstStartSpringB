@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findAllByStatus(String status);
+    List<User> findAllByStatusOrderByIdDesc(String status);
+    List<User> findAllByStatusInOrderByIdDesc(List<String> statusList);
+//    List<User> findAllByStatusInOrderByIdAsc(List<String> statusList);
 }
