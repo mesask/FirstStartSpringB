@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout}">
+<!--<head>-->
+<head>
+    <meta charset="UTF-8">
+    <title>List Article</title>
+</head>
+<body>
+<div layout:fragment="content">
+<!--<h1>List User</h1>-->
+<div class="container">
+
+    <div class="row" style="padding-top: 20px !important;">
+        <div class="col-md-6">
+            <h5>List Articles</h5>
+<!--            <h5>List Articles</h5>-->
+<!--            <h5>List Articles</h5>-->
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-sm float-end" th:href="@{/admin/article/add}">Add</a>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <table class="table table-ordered table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}">
+                <td th:text="${article.getTitle()}"></td>
+                <td th:text="${article.getCategory() != null ? article.getCategory().getName() : 'NULL Category'}"></td>
+                <!--                <td th:text="${article.getCategory().getName()}"></td>-->
+                <td th:text="${article.getDescription()}"></td>
+                <td >
+                            <span class="badge bg-primary" th:if="${article.getStatus()}=='ACT'">
+                                Active
+                            </span>
+                    <span class="badge bg-danger" th:if="${article.getStatus()=='DEL'}">
+                                Delete
+                            </span>
+                </td>
+                <td >
+                    <a th:href="@{/admin/articles/edit/{id}(id=${article.getId()})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/admin/articles/delete/{id}(id=${article.getId()})}" class="btn btn-danger btn-sm">Delete</a>
+                    <a class="btn btn-primary btn-sm">View</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

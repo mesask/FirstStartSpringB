@@ -6,6 +6,7 @@ public class UserRequest {
     private String phoneNumber;
     private String email;
     private String password;
+    private String role;
 
     public int getId() {
         return id;
@@ -45,5 +46,13 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
