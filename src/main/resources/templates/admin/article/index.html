@@ -27,7 +27,7 @@
         <table class="table table-ordered table-hover">
             <thead>
             <tr>
-                <th>Id</th>
+<!--                <th>Id</th>-->
                 <th>Title</th>
                 <th>Category</th>
                 <th>Description</th>
@@ -38,8 +38,13 @@
             <tbody>
             <tr th:each="article : ${articles}">
                 <td th:text="${article.getTitle()}"></td>
-                <td th:text="${article.getCategory() != null ? article.getCategory().getName() : 'NULL Category'}"></td>
+<!--                <td th:text="${article.getCategory() != null ? article.getCategory().getName() : 'NULL Category'}"></td>-->
                 <!--                <td th:text="${article.getCategory().getName()}"></td>-->
+                <td>
+                    <span th:if="${article.getCategory() != null}" th:text="${article.getCategory().getName()}">
+
+                    </span>
+                </td>
                 <td th:text="${article.getDescription()}"></td>
                 <td >
                             <span class="badge bg-primary" th:if="${article.getStatus()}=='ACT'">

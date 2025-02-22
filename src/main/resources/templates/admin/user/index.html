@@ -29,6 +29,7 @@
                 <th>Username</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Position</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -39,6 +40,9 @@
                 <td th:text="${user.getUsername()}"></td>
                 <td th:text="${user.getPhoneNumber()}"></td>
                 <td th:text="${user.getEmail()}"></td>
+                <td>
+                    <span th:if="${user.getPosition() != null}" th:text="${user.getPosition().getName()}"></span>
+                </td>
                 <td >
                             <span class="badge bg-primary" th:if="${user.getStatus()}=='ACT'">
                                 Active

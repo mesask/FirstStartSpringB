@@ -1,7 +1,10 @@
 package com.mesakh.firststartspringboot.models;
 
+import com.mesakh.firststartspringboot.models.response.KeyValueItem;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 //import lombok.Getter;
 //import lombok.NoArgsConstructor;
 //import lombok.Setter;
@@ -22,6 +25,14 @@ public class User {
     private String email;
     private String phoneNumber;
     private String role;
+    @ManyToOne
+    private Position position;
+//    @Transient
+//    private List<Position> positionList;
+//    @Transient
+//    private List<KeyValueItem> statusList;
+//    @Transient
+//    private List<KeyValueItem> roleList;
 
     public int getId() {
         return id;
@@ -78,4 +89,36 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+//    public List<Position> getPositionList() {
+//        return positionList;
+//    }
+//
+//    public void setPositionList(List<Position> positionList) {
+//        this.positionList = positionList;
+//    }
+//
+//    public List<KeyValueItem> getStatusList() {
+//        return statusList;
+//    }
+//
+//    public void setStatusList(List<KeyValueItem> statusList) {
+//        this.statusList = statusList;
+//    }
+//
+//    public List<KeyValueItem> getRoleList() {
+//        return roleList;
+//    }
+//
+//    public void setRoleList(List<KeyValueItem> roleList) {
+//        this.roleList = roleList;
+//    }
 }

@@ -2,6 +2,9 @@ package com.mesakh.firststartspringboot.controller;
 
 import com.mesakh.firststartspringboot.models.User;
 import com.mesakh.firststartspringboot.models.request.UserRequest;
+import com.mesakh.firststartspringboot.models.response.KeyValueItem;
+import com.mesakh.firststartspringboot.repository.PositionRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import com.mesakh.firststartspringboot.service.UserService;
@@ -16,10 +19,14 @@ import java.util.List;
 @RequestMapping("/admin")
 public class UserController {
     private final UserService userService;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final PositionRepository positionRepository;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService, PasswordEncoder passwordEncoder, PositionRepository positionRepository){
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.positionRepository = positionRepository;
+//        this.passwordEncoder = new passwordEncoder;
     }
 
     @GetMapping("/users")
@@ -31,12 +38,17 @@ public class UserController {
 
     @GetMapping("/users/add")
     public String add(Model model){
-        model.addAttribute("user", new UserRequest());
+        var user = new UserRequest();
+        user.setRoleList(KeyValueItem.getAllRoles());
+        user.setStatusList(KeyValueItem.getAllStatus());
+        user.setPositionList(positionRepository.findAll());
+        model.addAttribute("user", user);
         return "admin/user/form";
     }
 
     @PostMapping("/users/create")
     public String create(@ModelAttribute("user") UserRequest userRequest){
+        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 //        model.addAttribute("user", new UserRequest());
         userService.insertAndUpdate(userRequest);
         return "redirect:/admin/users";
@@ -70,6 +82,10 @@ public class UserController {
 //        userRequest.setPassword(user.getPassword());
         userRequest.setPassword("");
         userRequest.setPhoneNumber(user.getPhoneNumber());
+        userRequest.setRoleList(KeyValueItem.getAllRoles());
+        userRequest.setStatusList(KeyValueItem.getAllStatus());
+        userRequest.setPositionList(positionRepository.findAll());
+        userRequest.setPositionId(user.getPosition().getId());
         model.addAttribute("user", userRequest);
         return "admin/user/form";
     }

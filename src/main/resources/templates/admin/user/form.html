@@ -39,6 +39,36 @@
                     <input type="text" class="form-control" th:field="*{password}" placeholder="password">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Select Role</label>
+                    <select class="form-select" th:field="*{role}">
+                        <option th:each="role : ${user.getRoleList()}"
+                                th:value="${role.getKey()}"
+                                th:text="${role.getValue()}"
+                        ></option>
+                    </select>
+                    <!--                    <input type="text" class="form-control" th:field="*{password}" placeholder="password">-->
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Position</label>
+                    <select class="form-select" th:field="*{positionId}">
+                        <option th:each="position : ${user.getPositionList()}"
+                        th:value="${position.getId()}"
+                            th:text="${position.getName()}"
+                        ></option>
+                    </select>
+<!--                    <input type="text" class="form-control" th:field="*{password}" placeholder="password">-->
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Status</label>
+                    <select class="form-select" th:field="*{status}">
+                        <option th:each="status : ${user.getStatusList()}"
+                                th:value="${status.getKey()}"
+                                th:text="${status.getValue()}"
+                        ></option>
+                    </select>
+                    <!--                    <input type="text" class="form-control" th:field="*{password}" placeholder="password">-->
+                </div>
+                <div class="mb-3">
                     <button th:if="*{id==0}" class="btn btn-primary btn-sm btn-block">Create</button>
                     <button th:if="*{id!=0}" class="btn btn-primary btn-sm btn-block">Update</button>
                 </div>

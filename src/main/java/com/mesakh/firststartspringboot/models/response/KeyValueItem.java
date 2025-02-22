@@ -48,4 +48,12 @@ public class KeyValueItem {
         keyValueItemList.add(new KeyValueItem(3,"DRAFT","Draft"));
         return keyValueItemList;
     }
+
+    public static List<KeyValueItem> getAllRoles(){
+        List<KeyValueItem> keyValueItemList = new ArrayList<>();
+        keyValueItemList.add(new KeyValueItem(1,"ADMIN","Admin"));
+        keyValueItemList.add(new KeyValueItem(2,"USER","User"));
+        keyValueItemList.add(new KeyValueItem(3,"STAFF","Staff"));
+        return keyValueItemList;
+    }
 }
