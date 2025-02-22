@@ -6,5 +6,9 @@ import java.util.List;
 
 public interface ArticleService {
     List<Article> getArticles();
+
+    Article getArticlesById(int id);
+
+    void createAndUpdate(Article article);
 }
 

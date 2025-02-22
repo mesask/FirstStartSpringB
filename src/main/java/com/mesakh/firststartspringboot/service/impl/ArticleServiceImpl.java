@@ -20,4 +20,16 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticles(){
         return articleRepository.findAllByStatus(Constants.STATUS_ACTIVE);
     }
+
+    @Override
+    public Article getArticlesById(int id) {
+        return articleRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void createAndUpdate(Article article) {
+        articleRepository.save(article);
+    }
+
+
 }

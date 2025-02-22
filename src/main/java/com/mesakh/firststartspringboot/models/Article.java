@@ -1,6 +1,9 @@
 package com.mesakh.firststartspringboot.models;
 
+import com.mesakh.firststartspringboot.models.response.KeyValueItem;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "articles")
@@ -13,7 +16,10 @@ public class Article {
     @ManyToOne
     private Category category;
     private String status;
-
+    @Transient
+    private List<Category> categoryList;
+    @Transient
+    private List<KeyValueItem> statusList;
     public int getId() {
         return id;
     }
@@ -53,4 +59,22 @@ public class Article {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public List<KeyValueItem> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<KeyValueItem> statusList) {
+        this.statusList = statusList;
+    }
+
+
 }
