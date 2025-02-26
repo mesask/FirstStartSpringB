@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{_layout}">
+<!--<head>-->
+<head>
+    <meta charset="UTF-8">
+    <title>List Groups</title>
+</head>
+<body>
+<div layout:fragment="content">
+<!--<h1>List User</h1>-->
+<div class="container">
+
+    <div class="row" style="padding-top: 20px !important;">
+        <div class="col-md-6">
+            <h5>List Groups</h5>
+<!--            <h5>List Articles</h5>-->
+<!--            <h5>List Articles</h5>-->
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-sm float-end" th:href="@{/admin/groups/add}">Add</a>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <table class="table table-ordered table-hover">
+            <thead>
+            <tr>
+<!--                <th>Id</th>-->
+                <th>Name</th>
+                <th>Total Member</th>
+<!--                <th>Category</th>-->
+<!--                <th>Description</th>-->
+<!--                <th>Status</th>-->
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data : ${groups}">
+                <td th:text="${data.getName()}"></td>
+                <td>
+                    <span>1</span>
+<!--                    <a class th:href="@{/admin/groups/view/{id}(id=${data.getId()})}">View Group</a>-->
+                        <a th:href="@{/admin/groups/view/{id}(id=${data.getId()})}" class="btn btn-primary btn-sm">View Group</a>
+                </td>
+<!--                <td th:text="${article.getCategory() != null ? article.getCategory().getName() : 'NULL Category'}"></td>-->
+                <!--                <td th:text="${article.getCategory().getName()}"></td>-->
+<!--                <td>-->
+<!--&lt;!&ndash;                    <span th:if="${article.getCategory() != null}" th:text="${article.getCategory().getName()}">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td th:text="${article.getDescription()}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td >&ndash;&gt;-->
+<!--                            <span class="badge bg-primary" th:if="${article.getStatus()}=='ACT'">-->
+<!--                                Active-->
+<!--                            </span>-->
+<!--                    <span class="badge bg-danger" th:if="${article.getStatus()=='DEL'}">-->
+<!--                                Delete-->
+<!--                            </span>-->
+<!--                </td>-->
+                <td >
+                    <a th:href="@{/admin/groups/edit/{id}(id=${data.getId()})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/admin/groups/delete/{id}(id=${data.getId()})}" class="btn btn-danger btn-sm">Delete</a>
+                    <a class="btn btn-primary btn-sm">View</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Total Member</th>
+                <!--                <th>Category</th>-->
+                <!--                <th>Description</th>-->
+                <!--                <th>Status</th>-->
+                <th>Action</th>
+<!--                <th>Id</th>-->
+<!--                <th>Title</th>-->
+<!--                <th>Category</th>-->
+<!--                <th>Description</th>-->
+<!--                <th>Status</th>-->
+<!--                <th>Action</th>-->
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

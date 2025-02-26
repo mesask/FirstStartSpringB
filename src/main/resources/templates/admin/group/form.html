@@ -27,7 +27,7 @@
 <!--                    <option value=""></option>-->
                     <select class="form-select" th:field="*{category}">
                         <option th:each="data: ${article.getCategoryList()}"
-                                th:value="${data.getId()}"
+                        th:value="${data.getId()}"
                                 th:text="${data.name}">
 
                         </option>
